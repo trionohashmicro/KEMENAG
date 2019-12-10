@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_event_registration_ticket_form_lax" model="ir.ui.view">
+        <field name="name">event.registration.form.lax</field>
+        <field name="model">event.registration</field>
+        <field name="inherit_id" ref="event_sale.view_event_registration_ticket_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="before">
+                <field name="att_image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
+            </xpath>
+            <xpath expr="//group[1]" position="after">
+            	<group>
+            		<group>
+            			<field name="full_name"/>
+            			<field name="nip"/>
+            			<field name="rank_catagory"/>
+            			<field name="position"/>
+            			<field name="working_unit"/>
+            			<field name="place_dob"/>
+            			<field name="cellphone"/>
+            			<field name="npwp"/>
+            		</group>
+            		<group>
+            			<field name="address"/>
+            			<field name="ofc_address"/>
+            			<field name="ofc_phone"/>
+            			<field name="bg_education"/>
+            			<field name="w_p_expr"/>
+            			<field name="bank_name"/>
+            			<field name="acc_number"/>
+            			<field name="latter_of_duty" filename="file_name"/>
+            			<field name="file_name" invisible="1"/>
+            		</group>
+            	</group>
+            </xpath>
+        </field>
+    </record>
+
+     <record id="event_sale.view_event_registration_ticket_form" model="ir.ui.view">
+            <field name="name">event.registration.form.inherit</field>
+            <field name="model">event.registration</field>
+            <field name="inherit_id" ref="event.view_event_registration_form" />
+            <field name="arch" type="xml">
+                <field name="event_id" position="after">
+                    <field name="event_ticket_id" domain="[('event_id', '=', event_id)]"/>
+                </field>
+                <group name="event" position="after">
+                    <group string="Origin" invisible="1">
+                        <field name="sale_order_id"/>
+                        <field name="origin" attrs="{'invisible': [('sale_order_id', '!=', False)]}"/>
+                        <field name="sale_order_line_id" readonly="1" attrs="{'invisible': [('sale_order_id', '=', False)]}"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+</odoo>

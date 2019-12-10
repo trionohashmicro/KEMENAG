@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_event_form_lax">
+        <field name="name">event.event.form</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='user_id']" position="after">
+        		<field name="project_id" domain="[('is_event', '=', True)]"/>
+        	</xpath>
+        </field>
+
+    </record>
+</odoo>
