@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_event_form">
+            <field name="name">event.event.form</field>
+            <field name="model">event.event</field>
+            <field name="inherit_id" ref="event.view_event_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//button[@name='button_done']" position="after">
+                  <button name="create_survey" string="Create survey" type="object" class="oe_highlight"/>
+                <button name="view_survey" string="View survey" type="object" class="oe_highlight"/>
+
+              </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                <field name="survey_id" invisible="1"/>
+                </xpath>
+            </field>
+    </record>
+
+
+      <record model="ir.ui.view" id= "survey_tree">
+            <field name="name">Tree view for survey</field>
+            <field name="model">survey.survey</field>
+          <field name="inherit_id" ref="survey.survey_tree"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="event_id"/>
+              </xpath>
+            </field>
+        </record>
+
+
+     <record model="ir.ui.view" id="survey_form">
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='quizz_mode']" position="after">
+                  <field name="event_id"/>
+              </xpath>
+            </field>
+     </record>
+
+
+  </data>
+</odoo>
